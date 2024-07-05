@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- css code start from here -->
+<style>
+    .head h1{
+        font-size: 45px;
+        border: 3px solid limegreen;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .run{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .run h3{
+        color: limegreen;
+        font-size: 25px;
+    }
+    #wickets{
+        color: red;
+    }
+    .score{
+        font-size: 30px;
+        text-align: center;
+    }
+    .button{
+        display: grid;
+        height: auto;
+        width: 50vw;
+        gap: 20px;
+        padding-left: 50%;
+        transform: translate(-25%,25%);
+    }
+    .newbtn{
+        font-size: 20px;
+        height: 50px;
+    }
+    .footer{
+        background-color: limegreen;
+        font-size: 10px;
+        position: absolute;
+        width: 96vw;
+        top: 96%;
+        text-align: center;
+    }
+</style>
+<!-- css code  ends here -->
+
+<div class="head">
+    <h1>Cricket Game</h1>
+</div>
+
+    <label>
+        <div class="run">
+            <h3 class="total">Total:-</h3>
+            <h3 id="totalrun">00</h3>  <br>
+
+            <h3 class="total">Balls:-</h3>
+            <h3 id="ball">00</h3> <br>
+        </div>
+    <div class="run">
+        <h3 class="total">Overs:-</h3>
+        <h3 id="over">00</h3> <br>
+        <h3 class="total">Wickets:-</h3>
+        <h3 id="wickets">03</h3> <br>
+    </div>
+        <div class="score">
+            <label for="">
+                <h1 id="run">00</h1>
+            </label>
+        </div>
+
+        <div class="button">
+            <input type="button" class="newbtn" id="genbtn" value="Play">
+            <input type="button"class="newbtn" id="reset" value="Restart">
+        </div>
+            <div class="footer">
+                <p>Copyright reserved : saket121122@gmail.com</p>
+            </div>
+       <!-- javascript code start from here  -->
+            <script>
+
+// let o = prompt("Enter number of OVERS.");
+                let run = document.getElementById("run");
+
+                let ball = document.getElementById("ball");
+
+                let over = document.getElementById("over");
+
+                let wickets = document.getElementById("wickets");
+
+                let totalrun = document.getElementById("totalrun");
+
+                 let genbtn = document.getElementById("genbtn");
+
+                let restart = document.getElementById("reset");
+                counter = 0;
+                bcounter = 0;
+                ocounter = 0;
+                wicket = 3;
+// score counting code for cricket
+            genbtn.onclick = function(){
+                let x = Math.floor(Math.random()*9);
+                run.innerText=x;
+                run.style.color= "black";
+                bcounter++;
+                ball.innerText=bcounter;
+
+                // code for all out
+               if(wicket<=0){
+                alert("All Out ! , Click on Restart.");
+
+              };
+// rest code for play button
+
+            if(wicket==0){
+
+               genbtn.onclick = () => {
+                location.reload();
+
+               }
+            };
+
+// over counter
+               if(bcounter%6==0){
+                ocounter++;
+                over.innerText= ocounter;
+
+                if(ocounter==5){
+                    alert("Over End !, Double click restart.");
+                }
+               }
+// out code for js in cricket
+               if(x==7){
+                // alert(" OUT ! press Restart");
+                    run.innerText="Out";
+                    run.style.color= "red";
+                    wicket--;
+                    wickets.innerText=wicket;
+               }
+
+// code for wide ball
+               if(x==8){
+                run.innerText="wide";
+                bcounter--;
+               }
+ //    total run addition
+               x+=counter;
+               counter=x;
+               totalrun.innerText=counter;
+            }
+// reset code
+
+            restart.ondblclick= function(){
+            run.innerText="00";
+            totalrun.innerText="00";
+            wickets.innerText="03";
+            over.innerText= "00";
+            counter=0;
+            ball.innerText=0;
+            ocounter= 0;
+            wicket=3;
+            run.style.color= "black";
+        }
+
+    </script>
+</body>
+</html>
